@@ -1,0 +1,36 @@
+<body>
+    
+    
+<input id="one" type="text">
+<input id="two" type="text">
+<input id="three" type="text">
+
+
+<button  onclick="some('+')">  + </button>
+<button onclick="some('-')"> - </button>
+<button onclick="some('/')">  /</button>
+<button onclick="some('*')">  *</button>
+
+<script>
+
+function some(cal) {
+    let total;
+    if (cal=='+') {
+       total=+one.value + +two.value 
+    } 
+    if (cal=='-') {
+       total=one.value - two.value 
+    }   if (cal=='/') {
+       total=one.value / two.value 
+    }   if (cal=='*') {
+       total=one.value * two.value 
+    }   
+  three.value=total;
+  console.log(total);
+}
+
+
+
+
+</script>
+</body>
