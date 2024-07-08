@@ -1,0 +1,153 @@
+<style>
+
+    .box{
+        width: 100px;
+        height: 100px;
+        border: 1px solid red;
+    }
+
+    #one{
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .bottle{
+        z-index: 100;
+        position: absolute;
+        width: 30px;
+        height: 60px;
+        border-radius: 20px;
+    }
+
+    .box{
+        position: relative;
+        justify-content: space-around;
+        display: flex;
+        
+    }
+
+</style>
+
+<div id="one">
+
+</div>
+
+
+<script>
+
+    let colors = [];
+
+    for(let i = 1;i<=4;i++){
+
+        let bkColor = `rgb(${Math.random()*255},${Math.random()*255},${Math.random()*255})`;
+        colors.push(bkColor)
+
+
+    }
+
+
+    for(let i = 1;i<=4;i++){
+
+        
+
+        let box =  document.createElement('div');
+        box.className = 'box';
+        box.className = 'box';
+        one.append(box);
+
+        if(i == 4){
+            break;
+        }
+
+        // rgb(Math.random()*255,Math.random()*255,Math.random()*255)
+
+        
+        let left = 2;
+
+       
+
+        for(let i=1;i<=3;i++){
+
+            let bottle = document.createElement('div');
+            bottle.className = 'bottle';
+            bottle.style.backgroundColor = colors[i];
+            box.append(bottle);
+            bottle.style.left = left + 'px';
+
+            left += 32;
+
+            makeDraggable(bottle);
+
+
+        }
+
+        // a.style.backgroundColor = color;
+
+       
+
+        // if(i == 3){
+        //     box.lastChild.style.left = (window.innerWidth/2) - box.offsetLeft + 'px';
+        //     box.lastChild.style.top = (window.innerHeight/2) + 'px';
+        // }
+
+    }
+
+    let droppedBox;
+
+
+    function makeDraggable(meraTag){
+ 
+        let dragging = false;
+
+        let puranaX = 0;
+        let puranaY = 0;
+
+        meraTag.onmousedown =  function(evt){
+            puranaX = evt.clientX - meraTag.offsetLeft;
+            puranaY = evt.clientY - meraTag.offsetTop;
+            dragging = true;
+        }
+
+        meraTag.onmousemove =  function(evt){
+            if(dragging){
+                meraTag.style.left = evt.clientX - puranaX + 'px';
+                meraTag.style.top = evt.clientY - puranaY + 'px';
+            }
+        }
+
+        meraTag.onmouseup =  function(evt){
+            dragging = false;
+
+            let boxes = document.getElementsByClassName('box');
+
+            for(let tag of boxes){
+
+                let tagKaRight = tag.offsetLeft + tag.offsetWidth;
+                let tagKaBottom = tag.offsetTop + tag.offsetHeight;
+
+                if(evt.clientX > tag.offsetLeft && evt.clientX < tagKaRight && evt.clientY > tag.offsetTop && evt.clientY < tagKaBottom){
+                    droppedBox = tag;
+
+                    
+                    
+                    if(tag.children.length <3){
+                        meraTag.style.right =  (tag.children.length * meraTag.offsetWidth) + (tag.children.length == 0 ? 2 : tag.children.length * 2) + 'px';
+                        tag.append(meraTag);
+                    }else{
+                        tag.style.opacity = 0.5;
+                    }
+
+                    meraTag.style.left = '';
+                    break;
+                }else{
+                    droppedBox = null;
+                }
+
+            }
+
+        }
+
+
+    }
+
+</script>
