@@ -1,0 +1,61 @@
+<style>
+
+    #truck{
+        position: absolute;
+        width: 100px;
+        right: 0;
+    }
+
+    #box{
+        margin: auto;
+        position: relative;
+        width: 900px;
+        height: 400px;
+        border:1px solid red
+    }
+
+</style>
+
+
+<div id="box">
+
+    
+    <img id="truck" src="dragon-html.png" alt="">
+
+    <button onclick="speed+=5">+</button>
+    <button  onclick="speed-=5">-</button>
+    
+</div>
+<script>
+
+    let direction = "left+";
+    let key;
+    let count =0;
+
+    let speed = 5;
+
+     key = setInterval(function(){
+        
+        if(direction == "left"){
+            count+=speed;
+        }else{
+            count-=speed;
+        }
+
+        truck.style.right = count + 'px';
+
+        if(truck.offsetLeft <= 0){
+            direction = "right";
+            truck.style.transform="scale(-1,1)";
+        }else if((truck.offsetLeft + truck.offsetWidth) >= box.offsetWidth ){
+            direction = "left";
+            truck.style.transform="scale(1,1)";
+
+        }
+
+    }, 20)
+
+
+
+
+</script>
