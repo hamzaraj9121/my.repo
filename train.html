@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let fruits=[
+        {banana:20, 
+        guava:30,
+        mango:10,},
+        {
+            orange:10,
+            strabry:90,
+            chary:40,
+        },
+        {
+            orange:10,
+             kela:50,
+             nashpati:20,          
+        },
+        ]
+       let fruitname=prompt("fruit name type")
+       let qty=prompt("kitny")
+       for(let net of fruits)
+        {
+            if( fruitname in net )
+        {
+            if( qty> net ){
+               net[fruitname]-=qty;
+               break
+            }else{
+                let dastyab= net[fruitname]
+                qty-=dastyab;
+                net[fruitname]=0;
+
+
+            }
+
+        }
+        } 
+     
+</script>
+</html>
+
