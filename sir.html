@@ -1,0 +1,125 @@
+<style>
+    #app {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #red {
+       
+        width: 400px;
+        height: 400px;
+    }
+
+    #green {
+       
+        width: 400px;
+        height: 400px;
+    }
+
+    #circle {
+        cursor: pointer;
+        border: 1px solid white;
+        position: absolute;
+        /* border-radius: 100px; */
+        width: 100px;
+        height: 100px;
+    }
+</style>
+
+<div id="app">
+
+    <div id="red" style=" background-color: red"></div>
+    <div id="green" style=" background-color: green"></div>
+
+    <div id="circle"></div>
+
+
+
+</div>
+
+<script>
+
+    let puranaX = 0;
+    let puranaY = 0;
+
+    let colors = ["red", "green"];
+
+    let a = Math.random() * colors.length;
+
+    a = Math.floor(a);
+
+    circle.style.backgroundColor = colors[a];
+
+    console.log(colors[a])
+
+    let dragStart = false;
+
+    circle.onmousedown = function () {
+        puranaX = event.clientX - circle.offsetLeft;
+        puranaY = event.clientY - circle.offsetTop;
+        dragStart = true;
+    }
+    circle.onmousemove = function () {
+        if (dragStart) {
+            circle.style.left = event.clientX - puranaX + 'px';
+            circle.style.top = event.clientY - puranaY + 'px';
+
+            checkBounds(red);
+            checkBounds(green);
+
+    
+
+        }
+    }
+
+    circle.onmouseup = function () {
+        dragStart = false;
+
+        let redWala = checkBounds(red);
+        let greenWala = checkBounds(green);
+
+            if(redWala){
+
+                if(circle.style.backgroundColor == redWala.style.backgroundColor){
+                    alert('you win')
+                }else{
+                    alert('you lose')
+
+                }
+
+            }else if(greenWala){
+                
+                if(circle.style.backgroundColor == greenWala.style.backgroundColor){
+                    alert('you win')
+                }else{
+                    alert('you lose')
+
+                }
+
+            }
+
+    }
+
+
+    function checkBounds(box){
+
+        let boxKaLeft = box.offsetLeft;
+        let boxKaTop = box.offsetTop;
+        let boxKaRight = boxKaLeft + box.offsetWidth;
+        let boxKaBottom = boxKaTop + box.offsetHeight;
+
+        let circleKaLeft = circle.offsetLeft;
+        let circleKaTop = circle.offsetTop;
+        let circleKaRight = circleKaLeft + circle.offsetWidth;
+        let circleKaBottom = circleKaTop + circle.offsetHeight;
+
+
+        if(circleKaLeft > boxKaLeft && circleKaTop > boxKaTop && circleKaRight < boxKaRight && circleKaBottom < boxKaBottom){
+            box.style.outline = "5px solid black";
+            return box;
+        }else{
+            box.style.outline = "";
+        }
+}
+
+</script>
