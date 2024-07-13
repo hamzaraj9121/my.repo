@@ -1,0 +1,109 @@
+<table  border="1" width="500">
+
+    <thead></thead>
+
+    <tbody id="myTable"></tbody>
+
+    <tfoot>
+        <tr>
+            <td>
+                <button onclick="getBill()">Calculate Bill</button>
+            </td>
+            <td>
+                Gross Bill: <b id="grossBillBox"> </b>
+            </td>
+            <td>
+                Net Bill: <b id="netBillBox"> </b>
+            </td>
+        </tr>
+    </tfoot>
+
+   
+
+</table>
+
+<script>
+
+let dishes = [
+    {
+        name:"biryani",
+        price:300
+    },
+    {
+        name:"karahi",
+        price:250
+    },
+    {
+        name:"daal",
+        price:150
+    },
+    {
+        name:"shwarma",
+        price:175
+    }
+]
+
+
+
+function getBill(){
+
+    let totalBill = 0;
+
+    let inputs =  document.getElementsByTagName('input');
+
+    for(let input of inputs){
+        if(input.checked){
+
+            let price = input.parentNode.previousElementSibling.innerText;
+            let qty =   input.parentNode.nextElementSibling.firstElementChild.value;
+            
+            totalBill += price * qty;
+
+
+        }
+    }
+
+    grossBillBox.innerText =  totalBill;
+    
+    netBillBox.innerText =  totalBill * 1.16;
+
+    // console.log(totalBill);
+    
+}
+
+dishes.forEach(function(dish){
+
+    let tr =  document.createElement('tr');
+
+    let nameTD = document.createElement('td');
+    nameTD.innerText = dish.name;
+
+
+    let priceTD = document.createElement('td');
+    priceTD.innerText = dish.price;
+
+    let checkTD = document.createElement('td');
+    
+    
+    let checkBox =  document.createElement('input');
+    checkBox.type = 'checkbox';
+
+    checkTD.append(checkBox);
+
+    let qtyTD = document.createElement('td');
+    
+    let qtyBox = document.createElement('input');
+    qtyBox.type = "number";
+    qtyBox.placeholder = "Enter plates"
+    qtyTD.append(qtyBox);
+
+
+    tr.append(nameTD, priceTD, checkTD, qtyTD);
+
+    myTable.append(tr);
+
+
+})
+
+
+</script>
