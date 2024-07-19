@@ -1,0 +1,287 @@
+<style>
+
+    #video-box{
+        width: 500px;
+        height: 400px;
+        position: absolute;
+        top:0;
+        bottom:0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        z-index: 10;
+    }
+
+    #videoContainer {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .card {
+        width: 200px;
+        height: 200px;
+        border: 1px solid grey;
+        border-radius: 20px;
+    }
+</style>
+
+<div id="video-box" class="artplayer-app"></div>
+
+<button onclick="start()">Play</button>
+
+<div id="videoContainer">
+
+</div>
+
+<script>
+
+// host-browser(chrome, frirebox)
+// guest-JS
+
+// host-NodejS (DOM nahi milna)
+// guest-JS
+
+// host-React-Native
+// guest-JS
+
+// var art = new Artplayer({
+//     container: '#video-box',
+//     url: 'conv1.mp4',
+// });
+
+// ECMASCRIPT
+// ECMAINTERNAIONAL
+
+// declarative way m function banana
+// function sum(){
+
+
+// }
+// sum();
+// arrow function (expression based)
+let as =  (a, b) =>{
+    return a + b;
+}
+as()
+
+// regular function (expression based)
+let sum = function(a, b){
+    return a +b;
+}
+
+let player;
+
+    let videos = loadFromDB() ||  [
+        {
+            seen:0,
+            category:"podcast",
+            title:"Video title 1",
+            name: "main.mp3.mp4",
+            views: 0
+        },
+        {
+            seen:0,
+            category:"podcast",
+            title:"Video title 2",
+            name: "main1.mp3.mp4",
+            views: 0
+        },
+        {
+            seen:0,
+            category:"cartoon",
+            title:"Video title 3",
+            name: "main2.mp3.mp4",
+            views: 0
+        },
+        {seen:0,
+            category:"cartoon",
+
+            name: "main3.mp3.mp4",
+            views: 0
+        },
+        {
+            seen:0,
+            category:"cartoon",
+
+            name: "main4.mp3.mp4",
+            views: 0
+        },
+        {
+            seen:0,
+            name: "main5.mp3.mp4",
+            views: 0,
+            category:"lifestyle",
+        }
+        ,
+        {
+            seen:0,
+            category:"lifestyle",
+            name: "main6.mp3.mp4",
+            views: 0
+        }
+        ,
+        {
+            seen:0,
+            category:"lifestyle",
+            name: "main7.mp3.mp4",
+            views: 0
+        }
+        ,
+        {
+            seen:0,
+            category:"lifestyle",
+            name: "main8.mp3.mp4",
+            views: 0
+        }
+        ,
+        {
+            seen:0,
+            category:"cartoon",
+
+            name: "tom1.mp4",
+            views: 0
+        }
+        ,
+        {
+            seen:0,
+            category:"cartoon",
+
+            name: "tom2.mp4",
+            views: 0
+        }
+        ,
+        {
+            seen:0,
+            category:"cartoon",
+
+            name: "tom3.mp4",
+            views: 0
+        }
+
+    ]
+
+    videos.sort(function(p, n){
+        if(p.seen > n.seen){
+            return -1;
+        }else if(p.seen < n.seen){
+            return 1;
+        }else{
+            return 0;
+        }
+
+    })
+
+    let category = videos[0].category;
+
+    videos.sort(function(p, n){
+        if(p.category == category){
+            return -1;
+        }else if(p.category != category){
+            return 1;
+        }else{
+            return 0;
+        }
+
+    })
+
+
+
+    function getVideoThumbnail(fileName, meriImage) {
+
+        let video = document.createElement('video');
+        video.src = fileName;
+        video.play();
+
+        video.currentTime = 3;
+        let cnv = document.createElement('canvas');
+        cnv.width = 200;
+        cnv.height = 200;
+        video.volume = 0;
+        video.ontimeupdate = function () {
+            let pen = cnv.getContext('2d');
+            pen.drawImage(video, 0, 0, cnv.width, cnv.height);            
+            video.pause();
+            video.ontimeupdate = null;
+            let path = cnv.toDataURL();
+            meriImage.src = path;
+        }
+        // videoContainer.appendChild(cnv);
+
+    } 
+    function loadFromDB(){
+
+        
+let meriVideos = JSON.parse(localStorage.getItem('my-videos'));
+return meriVideos;
+
+}
+
+function saveToDB(){
+
+localStorage.setItem('my-videos', JSON.stringify(videos))
+
+}
+
+function start() {
+
+videos.forEach(function (video) {
+
+    let card = document.createElement('div');
+    card.className = 'card';
+    videoContainer.appendChild(card);
+
+    card.onclick = function(){
+
+        // alert(22);   
+
+        let videoBox = document.getElementById('video-box')
+
+         if(player){
+            player.destroy(true);
+         }
+         player = new Artplayer({
+                    
+                    container: '#video-box',
+                    url: video.name,
+                    playbackRate: true,                    
+                 
+                    
+                });
+
+                player.on('video:timeupdate', function(){
+                    console.log('chaling')
+                    video.seen++;
+
+                    saveToDB()
+                })
+
+
+                let closeBtn =  document.createElement('button');
+                closeBtn.innerText = "X";
+
+                closeBtn.onclick = ()=>{
+                    player.destroy(true);
+                }
+
+                videoBox.append(closeBtn)
+
+            }
+
+            
+
+            let img =  new Image;     
+            img.height=100;
+            img.style.width = "100%";
+            let span = document.createElement('div');
+            span.innerHTML = video.title || "Title not avaiable!";
+            
+            card.append(img, span);
+
+            getVideoThumbnail(video.name, img)
+
+
+        })
+}
+
+</script>
