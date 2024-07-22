@@ -1,0 +1,140 @@
+<body onkeydown="moveShip()">
+    
+
+
+    <style>
+    
+        #splashScreen{
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top:0;
+            left: 0;
+            background: rgb(40,46,213);
+        background: linear-gradient(60deg, rgba(40,46,213,1) 26%, rgba(57,204,109,1) 37%, rgba(86,143,147,1) 50%, rgba(119,76,189,1) 56%, rgba(190,103,167,1) 73%, rgba(228,117,156,1) 100%, rgba(255,255,255,0.730111801586212) 100%, rgba(215,172,42,1) 100%, rgba(74,69,205,1) 100%);
+        }
+        
+        #app{
+            position: relative;
+            width: 600px;
+            height: 500px;
+            border: 1px solid red;
+        }
+    
+    #player{
+        position: absolute;
+        top:80%;
+        width: 50px;
+    }
+    
+    #start-btn{
+        width: 300px;
+        height: 200px;
+    }
+
+    .missile{
+        position: absolute;
+        width: 30px;
+    }
+
+    #gameScreen{
+        position: absolute;
+        top:0;
+        left:0;
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        /* background-image: url('sapce-bk.jfif'); */
+    }
+    
+    </style>
+<div id="app">
+    
+    <div id="splashScreen">
+
+        <img onclick="startGame()" src="start-btn" id="start-btn" alt="">
+
+    </div>
+
+    <div id="gameScreen" style="display: none;">
+
+
+        <img id="player" src="space" alt="">
+
+    </div>
+
+    <div id="gameOverScreen">
+        
+    </div>
+
+
+</div>
+
+
+<script>
+
+
+function fire() {
+
+    let missile =  document.createElement('img');
+    missile.src = 'misile';
+    missile.className = 'missile';
+    missile.style.left = player.offsetLeft + 10 + 'px';
+        missile.style.top = player.offsetTop + 'px';
+    
+        gameScreen.append(missile);
+    
+        setInterval(()=>{
+    
+        missile.style.top = missile.offsetTop-1 + 'px';
+    
+    
+        }, 0)
+    
+    }
+    
+    function moveShip(){
+        
+        switch(event.keyCode){
+    
+            case 37:
+                player.style.left  = (player.offsetLeft - 5) +'px';
+                console.log('left jying');
+                break;
+    
+            case 39:player.style.left  = (player.offsetLeft + 5) +'px';
+                console.log('right jying');
+                break;            
+    
+            case 32:
+                fire();
+                console.log('fire maaring');
+                break;
+            }
+    
+    
+    
+}
+
+
+function startGame(){
+
+    splashScreen.style.display  = 'none';
+    gameScreen.style.display  = '';
+
+
+}
+
+
+
+
+</script>
+
+    
+    </body>
