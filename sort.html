@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+    // let items = [5,2,1,8,3,10,15,88,7];
+    // const odd=[];
+    // const even=[]
+    // for (let i=0;i<=items.length;i++){
+    //     if(i%2!==0){
+    //         odd.push(items[i]);
+    //     }else{
+    //         even.push(items[i]);
+    //     }
+    // }
+    // console.log(odd,even);
+
+let students = [
+    {
+        name:'ali',
+        marks:[44,66,88,33,12]
+    },
+    {
+        name:'rameez',
+        marks:[76,38,65,54,63]
+    },
+    {
+        name:'yahya',
+        marks:[44,66,88,33,12]
+    },
+    {
+        name:'aqsa',
+        marks:[63,66,78,33,94]
+    }
+]
+
+let avgWali = [];
+
+
+for(let student of students){
+    let total = 0;
+    for(let mark of  student.marks){
+        total += mark;
+    }
+
+    avgWali.push(total/student.marks.length);
+    console.log(student.name, total/student.marks.length);
+}
+
+console.log(avgWali)
+
+// getMax([5,9,1,7,8,10,2])
+
+// function getMin(numsArray){
+//     let max = numsArray[0];
+//     for(let num of numsArray){
+//         if(num < max){
+//             max = num;
+//         }
+//     }
+//     return max;
+
+
+// }
+
+// function getMax(numsArray){
+//     let max = numsArray[0];
+//     for(let num of numsArray){
+//         if(num > max){
+//             max = num;
+//         }
+//     }
+//     return max;
+
+
+// }
+    
+
+
+</script>
+</html>
