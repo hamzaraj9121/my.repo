@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #container{
+        display: flex;
+        gap: 10px;
+        
+        flex:wrap;
+    }
+    .box{
+       height: 100px;
+        width:100px;
+        border: 2px red solid ;
+    }
+
+</style>
+<body>
+    <div id="container"></div>
+</body>
+
+<script>
+    
+     document.onkeypress=function (evt) {
+        let box;
+        box =document.createElement("div");
+         box.innerText = evt.key
+     
+    box.className="box";
+    container.append(box)
+     }
+</script>
+   
+</html>
