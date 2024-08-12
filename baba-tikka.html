@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1">
+
+        <tr>        
+            <th>Dish Name</th>
+            <th>Dish Price</th>
+            <th></th>        
+        </tr>
+    
+        <tr>
+            <td>Biryani</td>
+            <td>250</td>
+            <td>
+                <input type="checkbox">
+            </td>
+        </tr>
+    
+        <tr>
+            <td>Daal Maash</td>
+            <td>150</td>
+            <td>
+                <input type="checkbox">
+            </td>
+        </tr>
+    
+        <tr>
+            <td>Mutton Karahi</td>
+            <td>650</td>
+            <td>
+                <input type="checkbox">
+            </td>
+        </tr>
+    
+        <tr>
+            <td>qorma</td>
+            <td>450</td>
+            <td>
+                <input type="checkbox">
+            </td>
+          
+        </tr>
+    
+        <tr>
+            <td  colspan="3">
+                <button onclick="getBill()">Get Bill</button>
+    
+                <span id="totalBillBox">0.00</span>
+                <span>Gross Bill:</span>
+                <span id="netBillBox">0.00</span>
+    
+            </td>
+        </tr>
+    
+    </table>
+    
+    <script>
+           function color(checkbox){
+            if (checkbox.checked) {
+                checkbox.parentNode.style.bgcolor="red";
+            } else {
+                checkbox.parentNode.style.bgcolor="white";
+            }
+           }
+           
+
+    function getBill(){
+    
+        let total = 0;
+        let selectedDishes = document.querySelectorAll('input:checked');
+       
+        for(let meraTag of selectedDishes){
+            total += +meraTag.parentNode.previousElementSibling.innerText
+        
+        }
+        // meraTag.parentNode.previousElementSibling.style.bgcolor("red")
+        totalBillBox.innerText = netBillBox.innerText  = total;
+         
+    
+        if(total > 1000){
+            netBillBox.innerText = total * 0.9;
+        }
+    
+    }
+    
+        
+    
+    
+    </script>
+</html>
