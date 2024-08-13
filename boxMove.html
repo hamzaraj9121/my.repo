@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            display: flex;
+            gap: 20px;
+        }
+     #box{
+        height:100px ;
+        width:100px ;
+        background-color: blue;
+     }
+
+    </style>
+</head>
+<script src="jquery-3.7.1.js"></script>
+<body>
+    <div id="container">
+    <div id="box"></div>
+</div>
+</body>
+<script>
+
+ $("#box").on("click",function(evt){
+    let copyWala=$(evt.currentTarget).clone();
+ copyWala.text(Math.random()*1000);
+ 
+ })
+
+</script>
+</html>
