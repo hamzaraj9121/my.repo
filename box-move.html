@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    .box{
+    height: 50px ;
+    width:50px ;
+   } 
+
+
+    </style>
+</head>
+<script src="jquery-3.7.1.js"></script>
+
+<body>
+    
+    <button class="box" style="background-color: blue;">ON click</button>
+</body>
+<script>
+$(".box").on("click",function(){
+    if ($(this).css(backgroundColor)=="rgb(255,0,0")) {
+        $(this).(css).("backgroundColor")=("red");
+    } else {
+        $(this).(css).("backgroundColor")=("blue");
+    }
+})
+
+</script>
+</html>
