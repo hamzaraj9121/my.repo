@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <input id="userName" /> <br />
+        <select id="userCity">
+            <option>FSD</option>
+            <option>GOJRA</option>
+            <option>TOBA</option>
+        </select>
+        <button onclick="saveUser()">Add User</button>
+    </form>
+    
+    <!-- <table id="userTable" border="1"> -->
+    
+    <!-- </table> -->
+    
+    <script>
+    
+        let users = [];
+    
+        function saveUser() {
+    
+            event.preventDefault();
+    
+             let nyaUser = {
+                 name: userName.value,
+                 city: userCity.value
+             };
+    
+            users.push(nyaUser);
+    
+            saveToDB(users)
+    
+            showUsers();
+    
+        }
+    
+        // localStorage.setItem(aapkiKey, aapKaData)
+        // localStorage.getItem(aapkiKey)
+        // localStorage.removeItem(aapkiKey)
+    
+        // LOCAL-STORAGE
+        // browser ki built-in 5MB ki database
+        // yeh har domain ki apni 5MB hoti  
+        // but saari HTML files ki shared hoti 5MB
+        // LS siraf string m data save kar sakti h 
+    
+        // saari LS farigh krna
+        // localStorage.clear();
+    
+        // agar JS object ya JS [] ko string m change karna ho
+        // to use JSON.strigify() se guzarden
+        // let s  = {name:'ali'};
+        // let stringWalaObject = JSON.stringify(s)
+        // localStorage.setItem("sim", stringWalaObject)
+    
+        // agar string shuda JS item ko JS m chagne krna ho
+        // let purJSWalaItem = JSON.parse(  stringWalaObject )
+        loadFromDB();
+        showUsers();
+    
+    
+    
+        function loadFromDB() {
+    
+            let jSWALiArray = JSON.parse(localStorage.getItem("mereUsers"));
+    
+            users = jSWALiArray || []
+    
+            console.log(jSWALiArray);
+    
+    
+        }
+    
+        function saveToDB(abc) {
+    
+            localStorage.setItem("mereUsers", JSON.stringify(abc))
+    
+        }
+    
+        function showUsers() {
+    
+            userTable.innerHTML = '';
+            for (let user of users) {
+                userTable.innerHTML += `<tr>    
+                                            <td>${user.name}</td>
+                                            <td>${user.city}</td>
+                                        </tr>`
+            }
+    
+        }
+    
+    </script>
+    
+</html>
