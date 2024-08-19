@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+       <style>
+        #main{
+            border: 2px,solid,red;
+        }
+       </style>
+</head>
+<body>
+     <table id="main" >
+        <tr >
+            <td>
+                Name
+            </td>
+            <td>
+               Price
+            </td>
+            <td>
+              
+            </td>
+        </tr> 
+        <tr>
+            <td>
+            Qorma
+                  
+            </td>
+            <td>
+                240
+            </td>
+            <td>
+                <input type="checkbox">
+            </td>
+        </tr>
+        <tr>
+            <td>
+             Biryani
+            </td>
+            <td>
+            300
+            </td>
+            <td>
+             <input type="checkbox">
+            </td>
+        </tr>
+        <tr>
+            <td>
+             Matn krahi
+            </td>
+            <td>
+            500
+            </td>
+            <td>
+             <input type="checkbox">
+            </td>
+        </tr>
+        <tr>
+            <td>
+             Fish
+            </td>
+            <td>
+            1000
+            </td>
+            <td>
+             <input type="checkbox">
+            </td>
+        </tr>
+<tr>
+    <td>
+        <button onclick="getBill()">Get Bill</button>
+
+    
+        <span id="netBill">
+            0.00
+        </span>
+        <span id="GrossBill">
+            0.00
+        </span>
+    </td>
+</tr>
+
+            
+        </table>
+    
+    
+</body>
+
+<script>
+    let total=0;
+      function getBill() {
+         let value=document.querySelectorAll('input:checked')
+
+         for(newValue of value)
+ {
+      total+=+newValue.parentNode.previousElementSibling.innerText
+ }
+        
+ total=netBill.innertext=GrossBill.innerText;
+
+
+      }
+
+
+
+
+</script>
+
+
+</html>
