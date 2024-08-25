@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+    canvas{
+        border: 1px solid black;
+    }
+    
+    </style>
+
+<body>
+
+
+
+<canvas id="meraCanvas" width="500" height="400"></canvas>
+
+    
+</body>
+<script>
+
+    
+// canvas se pen get krna
+let meraPen =  meraCanvas.getContext('2d');
+
+meraPen.beginPath();
+
+meraPen.fillRect(130,80,10,260);
+meraPen.strokeRect(130,80,10,260);
+meraPen.fillStyle = "white";
+meraPen.fill();
+meraPen.stroke();
+meraPen.closePath();
+
+
+
+
+
+meraPen.fillRect(140,50,100,150);
+meraPen.strokeRect(140,50,100,150);
+meraPen.fillStyle = 'green';
+
+meraPen.beginPath();
+meraPen.fillRect(240,50,200,150);
+meraPen.strokeRect(240,50,200,150);
+meraPen.fillStyle="white"
+// 57 degrees = 1 radian
+// 360/57 = 6.15
+// 180/57 = 3.142 (PI)
+
+meraPen.arc(340,120,50,0.5,4.2)
+meraPen.stroke();
+meraPen.closePath();
+meraPen.beginPath();
+
+
+meraPen.arc(360,100,50,1,3.6)
+meraPen.stroke();
+meraPen.closePath();
+
+ meraPen.closePath();
+// meraPen.fillRect(130,480,100,10);
+// meraPen.strokeRect(130,480,100,10);
+// meraPen.fill();
+// meraPen.stroke();
+ 
+meraPen.lineTo(100,20)
+meraPen.lineTo(100,20)
+meraPen.lineTo(100,20)
+meraPen.lineTo(100,20)
+meraPen.lineTo(100,20)
+meraPen.stroke();
+meraPen.fillStyle
+meraPen.closePath();
+
+
+
+
+ 
+</script>
+</html>
