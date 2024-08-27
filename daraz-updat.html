@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<style>
+
+    .like-btn{
+        width: 19px;
+    position: absolute;
+    right: 10px;
+    top:10px
+    }
+
+    .detailBox{
+        padding: 10px;
+    }
+
+.bold{
+    font-weight: bold;
+}
+
+.detailBox{
+    position: relative;
+    height: calc(55% - 20px);
+    border: 1px solid red;
+}
+
+.imgBox img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.imgBox{
+    height: 45%;
+    border: 1px solid blue;
+}
+
+    #adContainer{
+        display: flex;
+        justify-content: space-around;
+    }
+
+.adBox{
+    border: 2px dotted red;
+    width: 250px;
+    height: 250px;
+}
+
+</style>
+
+<div id="adContainer">
+
+</div>
+
+
+<script>
+
+    let ads = [
+        {
+            title:"iphone 13",
+            pic:"https://images.olx.com.pk/thumbnails/474722867-800x600.webp",
+            price:10000
+        },
+        {
+            title:"Khyber 1998",
+            pic:"https://images.olx.com.pk/thumbnails/470399148-800x600.webp",
+            price:340000
+        },
+        {
+            title:"Honda Civic",
+            pic:"https://images.olx.com.pk/thumbnails/464885674-800x600.webp",
+            price:1300000
+        }
+    ]
+
+
+    ads.forEach(function(ad, meraIndex){
+
+        let adBox =  document.createElement('div');
+        adBox.className = 'adBox';
+
+        let imgBox =  document.createElement('div');
+        imgBox.className = 'imgBox';
+
+        let img =  document.createElement('img');
+        img.src = ad.pic;
+
+        imgBox.append(img);
+
+
+        let detailBox =  document.createElement('div');
+        detailBox.className = 'detailBox';
+
+        let priceBox =  document.createElement('div');
+        priceBox.innerText = ad.price;
+        priceBox.className = "bold";
+
+        
+        let likeImg = document.createElement('img');
+        likeImg.src = "https://www.olx.com.pk/assets/iconFavoriteUnselected_noinline.e938669ff34db8fd19c07ac3b2b65fcc.svg"
+        likeImg.className = 'like-btn'
+
+        let updateBtn = document.createElement('button');
+updateBtn.innerText = "Update";
+
+updateBtn.onclick = function(){
+    let newTitle = prompt("Enter new title:");
+    if(newTitle !== null && newTitle !== ""){
+        ad.title = newTitle;
+        titleBox.innerText = newTitle;
+    }
+}
+
+
+
+        let delBtn = document.createElement('button');
+        delBtn.innerText = "Delete";
+
+        let titleBox =  document.createElement('div');
+        titleBox.innerText = ad.title
+        
+        delBtn.onclick = function(){
+            let adKaIndex = ads.indexOf(ad);
+            ads.splice(adKaIndex, 1);
+            adBox.remove()
+            console.log(ad)
+        }
+        // updatbtn.onclick=function(){
+        //     let adKaIndex = ads.indexOf(ad);
+        //     ads.slice(adKaIndex, 1);
+        //     adBox.add()
+        //     console.log(ad)
+        // }
+        
+
+        detailBox.append(priceBox, likeImg, delBtn, updateBtn, titleBox);
+        
+        adBox.append(imgBox, detailBox);
+
+        //parent tag      childTag
+        adContainer.append(adBox);
+
+
+    })
+
+
+// model-aapka data
+// view- aapka display, html, css
+
+
+    // let num = 20;
+    
+    // {
+    //     console.log(num);
+    // }
+    
+    // let num = 20;
+
+    // if(10 > 2){
+    //     let num = 40;
+    //     console.log(num)
+    // }
+
+    // console.log(num);
+
+    // let num = 20;
+    // {
+
+    //     // let num = 30;
+    //     {
+
+    //         // let num = 60;
+
+    //         console.log(num);
+
+    //     }
+    // }
+
+
+</script>
+</html>
