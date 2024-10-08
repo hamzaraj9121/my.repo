@@ -1,0 +1,125 @@
+
+
+
+<!-- <script>
+      axios.post('https://api.apilayer.com/text_to_emotion',"It\'s not funny. This must be a joke!",
+        {
+            headers:{apiKey:"aV1Du4ezeghf51iGEuYWBb7DgZFRhGct"}
+        }
+      ).then(function(resp){
+        console.log(resp.data);
+        
+      })
+
+
+</script> -->
+
+
+
+<!-- Yeh ek simple UI hai jo Text-to-Emotion API ka use karta hai:
+
+
+HTML: -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text-to-Emotion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 50%;
+            margin: 40px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #3e8e41;
+        }
+        .dat {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Text-to-Emotion</h2>
+        <input type="text" id="text" class="input-field" placeholder="Enter text">
+        <button class="button" onclick="analyzeText()">Analyze</button>
+        <div class="dat" id="result"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        function analyzeText() {
+            const text = document.getElementById('text').value;
+            // const apiKey = 'aV1Du4ezeghf51iGEuYWBb7DgZFRhGct';
+            axios.post('https://api.apilayer.com/text_to_emotion',text, {
+                headers: {
+                    "apiKey": "aV1Du4ezeghf51iGEuYWBb7DgZFRhGct"
+                }
+            })
+            .then(function(response) {
+                const result = response.data;
+                document.getElementById('result').innerHTML = `
+                    <h3>Emotion Analysis:</h3>
+                    <p>Emotion: ${result.emotion}</p>
+                    <p>Confidence: ${result.confidence}</p>
+                    
+                `;
+                console.log(result);
+                
+
+            })
+            .catch(function(error) {
+                console.error(error);
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+
+<!-- Yeh UI:
+
+
+1. Ek input field hai jahan user text enter kar sakta hai.
+2. Ek button hai jo text ko analyze karta hai.
+3. Ek result div hai jahan emotion analysis ka result display hota hai.
+
+
+Script:
+
+
+1. Axios library ka use karta hai API request bhejne ke liye.
+2. analyzeText() function ko define karta hai jo text ko analyze karta hai.
+3. API response ko parse karta hai aur result ko display karta hai. -->
+<!-- "It\'s not funny. This must be a joke!" -->
